@@ -1,1 +1,1 @@
-# InsightDom-RD15-SIC-ProyectoHackathon
+# QualitySense-RD15-SIC-ProyectoHackathon
