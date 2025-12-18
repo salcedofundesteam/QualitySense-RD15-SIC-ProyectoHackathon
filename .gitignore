@@ -1,0 +1,10 @@
+pyvenv.cfg
+__pycache__/
+venv/
+.env
+bin
+lib
+lib64
+share
+__pycache__
+crm-moderno.htmlcrm-moderno.html
