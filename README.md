@@ -1,108 +1,54 @@
-# QualitySense-RD15-SIC-ProyectoHackathon
-
-
-
-
-### pip install -r requirements.txt
-
 # QualitySense
+_Samsung Innovation Campus - RD16_
 
-## Descripción del Proyecto
+## Descripción
 
-**QualitySense** es un sistema basado en **visión por computadora e inteligencia artificial** diseñado para **automatizar la detección, clasificación y conteo de aguacates** en líneas de producción agroindustrial.
+QualitySense es un sistema de monitoreo en tiempo real que utiliza visión artificial y procesamiento de lenguaje natural para automatizar la clasificación y análisis de aguacates en entornos industriales.
 
-El aguacate es uno de los productos agrícolas más importantes de la **República Dominicana**, representando cerca del **12.63% de la producción agrícola** y aproximadamente **10.23% de las exportaciones agrícolas**. Sin embargo, su clasificación aún se realiza mayormente de forma **manual**, lo que provoca lentitud, errores y mayores costos.
-
----
-
-## Problemática
-
-* Clasificación manual dependiente del ojo humano.
-* Hasta **20% de error** en la separación por tamaños.
-* Procesos lentos y poco escalables.
-* Incremento de costos operativos.
-
----
-
-## Objetivo
-
-Desarrollar un sistema inteligente capaz de **detectar, clasificar y contar aguacates en tiempo real**, aumentando la eficiencia del proceso y reduciendo errores humanos.
-
----
-
-## Enfoque Técnico
-
-El proyecto utiliza **YOLO (You Only Look Once)** con **transfer learning** para detección de objetos.
-
-* Dataset: Más de **3,500 imágenes** de aguacates etiquetadas.
-* Precisión: Superior al **90%**.
-* Mejora de velocidad: Aproximadamente **40%**.
-
----
-
-## Tecnologías Utilizadas
-
-* Python
-* Ultralytics YOLO
-* OpenCV
-* Streamlit
-* SQLite
-* spaCy
-* Matplotlib & Seaborn
-
----
-
-## Entrenamiento del Modelo
-
-* Modelo inicial: `yolo11s.pt` (mAP50-95: 0.556)
-* Modelo final: `yolo11m.pt` (mAP50-95: 0.572)
-
-El modelo final se guarda como:
-
-```
-best.pt
-```
-
----
-
-## Ejecución e Inferencia
-
-Instalar dependencias:
+## Instalación Rápida
 
 ```bash
-pip install ultralytics streamlit opencv-python spacy matplotlib seaborn
+# Clonar repositorio
+git clone https://github.com/samsung-innovation-campus/qualitysense-rd16.git
+cd qualitysense-rd16
+
+# Instalar dependencias
+pip install -r requirements.txt
+python -m spacy download es_core_news_md
+
+# Inicializar base de datos
+python base_temporal.py
 ```
 
-Ejecutar inferencia:
+## Uso Básico
 
+### Ejecutar interfaz web:
 ```bash
-yolo detect predict model=best.pt source=imagen.jpg
+streamlit run interfaz.py
 ```
 
+### Ejecutar sistema de detección:
+```bash
+python insightdom_model.py --model modelos/avocado.pt --source 0
+```
+
+## Estructura del Proyecto
+
+```
+qualitysense-rd16/
+├── interfaz.py              # Dashboard principal
+├── insightdom_model.py      # Sistema de detección YOLO
+├── nlp.py                   # Procesamiento de lenguaje natural
+├── conexion.py              # Gestión de base de datos
+├── graficos.py              # Generación de gráficos
+├── consultas.py             # Consultas SQL comunes
+├── requirements.txt         # Dependencias
+└── modelos/ --> optional layer
+    └── avocado.pt          # Modelo YOLO entrenado
+```
+
+## Documentación Completa
+
+Para información detallada sobre arquitectura, configuración avanzada y solución de problemas, consulte [DOCUMENTATION.md](DOCUMENTATION.md).
+
 ---
-
-## Módulo de Visualización
-
-El sistema incluye una **interfaz web en Streamlit** que permite:
-
-* Visualizar estadísticas de producción.
-* Consultar datos por tamaño y calidad.
-* Realizar consultas en lenguaje natural mediante un **chatbot con NLP**.
-
-Los datos se almacenan en una base de datos **SQLite** para análisis histórico.
-
----
-
-## Impacto y Escalabilidad
-
-* Reducción de errores y costos operativos.
-* Disminución de costos de implementación hasta en **50%**.
-* Diseño **escalable**, adaptable a otros productos agrícolas o industriales.
-
----
-
-## Conclusión
-
-QualitySense demuestra cómo la **inteligencia artificial aplicada** puede modernizar la agroindustria, haciendo los procesos más eficientes, precisos y accesibles.
-
-> *Automatizar hoy es producir mejor mañana.*
